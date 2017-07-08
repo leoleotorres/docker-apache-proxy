@@ -17,7 +17,7 @@ build: Dockerfile
 
 run: clean-containers build
 	docker run -d -p 8080:8080 $(IMAGE)
-	http_proxy=http://$(LOCALHOST) curl http://icanhazip.com
+	http_proxy=http://$(LOCALHOST):8080 curl http://icanhazip.com
 
 clean-containers:
 	-docker ps -a | grep -v IMAGE | awk '{ print $$1 }' | xargs docker rm -f

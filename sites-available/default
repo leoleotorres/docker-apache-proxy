@@ -5,6 +5,7 @@ ProxyRequests On
 ProxyVia On
 
 <Proxy *>
-Allow from all
+  Order deny,allow
+  Allow from all
 </Proxy>
 </VirtualHost>
