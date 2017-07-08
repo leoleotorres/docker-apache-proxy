@@ -1,6 +1,6 @@
-IMAGE=mcandre/docker-apache:latest
+IMAGE=mcandre/docker-apache-proxy:latest
 
-LOCALHOST=$$(docker-machine ip default)
+LOCALHOST=10.0.75.0
 
 ifneq ($(OS),Windows_NT)
 	UNAME=$(shell uname -s)
@@ -16,8 +16,8 @@ build: Dockerfile
 	docker build -t $(IMAGE) .
 
 run: clean-containers build
-	docker run -d -p 80:80 $(IMAGE)
-	curl http://$(LOCALHOST)
+	docker run -d -p 8080:8080 $(IMAGE)
+	http_proxy=http://$(LOCALHOST) curl http://icanhazip.com
 
 clean-containers:
 	-docker ps -a | grep -v IMAGE | awk '{ print $$1 }' | xargs docker rm -f

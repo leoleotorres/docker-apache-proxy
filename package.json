@@ -1,12 +1,12 @@
 {
-  "name": "docker-apache",
-  "description": "a continuous Docker Apache server",
+  "name": "docker-apache-proxy",
+  "description": "a continuous Docker Apache forward proxy",
   "version": "0.0.0",
   "repository": {
     "type": "git",
-    "url": "git://github.com/mcandre/docker-apache.git"
+    "url": "git://github.com/mcandre/docker-apache-proxy.git"
   },
-  "author": "Andrew Pennebaker <andrew.pennebaker@gmail.com> (http://www.yellosoft.us/)",
+  "author": "Andrew Pennebaker <andrew.pennebaker@gmail.com>",
   "directories": {
     "lib": "."
   },
@@ -16,13 +16,6 @@
   "scripts": {},
   "dependencies": {},
   "devDependencies": {
-    "grunt": "~0.4.5",
-    "grunt-cli": "~0.1.13",
-    "grunt-exec": "~0.4.6",
-    "jshint": ">=2.1.2",
-    "jslint": ">= 0.8.1",
-    "eslint": ">= 0.16.0",
-    "editorconfig-tools": ">= 0.1.1",
     "dockerlint": "0.1.4"
   }
 }
