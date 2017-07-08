@@ -7,11 +7,16 @@ https://registry.hub.docker.com/u/mcandre/docker-apache-proxy/
 # EXAMPLE
 
 ```
-$ docker run -d -p 8080:8080 mcandre/docker-apache-proxy:latest
-fa627d9c103f69120ff39232db73fc19d98a4b75279bdc0ca951ba8df88dfd7b
+$ make
+docker-compose up &
+sleep 3
 
-$ http_proxy=http://10.0.75.0 curl http://icanhazip.com
-curl: (7) Failed to connect to 10.0.75.0 port 1080: Timed out
+Creating dockerapacheproxy_docker-apache-proxy_1 ...
+Creating dockerapacheproxy_docker-apache-proxy_1 ... done
+Attaching to dockerapacheproxy_docker-apache-proxy_1
+
+http_proxy=http://10.0.75.1 wget -q -O- http://icanhazip.com
+63.162.123.109
 ```
 
 # REQUIREMENTS

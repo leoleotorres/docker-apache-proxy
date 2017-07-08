@@ -1,0 +1,5 @@
+docker-apache-proxy:
+  image: mcandre/docker-apache-proxy
+  hostname: apache
+  ports:
+    - "80:80"

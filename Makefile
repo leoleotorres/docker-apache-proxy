@@ -1,6 +1,6 @@
 IMAGE=mcandre/docker-apache-proxy:latest
 
-LOCALHOST=10.0.75.0
+LOCALHOST=10.0.75.1
 
 ifneq ($(OS),Windows_NT)
 	UNAME=$(shell uname -s)
@@ -16,8 +16,12 @@ build: Dockerfile
 	docker build -t $(IMAGE) .
 
 run: clean-containers build
-	docker run -d -p 8080:8080 $(IMAGE)
-	http_proxy=http://$(LOCALHOST):8080 curl http://icanhazip.com
+	docker-compose up &
+	sleep 3
+	http_proxy=http://$(LOCALHOST) wget -q -O- http://icanhazip.com
+
+clean-compose:
+	-docker-compose rm -f
 
 clean-containers:
 	-docker ps -a | grep -v IMAGE | awk '{ print $$1 }' | xargs docker rm -f
@@ -28,7 +32,7 @@ clean-images:
 clean-layers:
 	-docker images | grep -v IMAGE | grep none | awk '{ print $$3 }' | xargs docker rmi -f
 
-clean: clean-containers clean-images clean-layers
+clean: clean-compose clean-containers clean-images clean-layers
 
 editorconfig:
 	flcl . | xargs -n 100 editorconfig-cli check
