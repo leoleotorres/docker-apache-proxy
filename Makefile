@@ -19,6 +19,7 @@ run: clean-containers build
 	docker-compose up &
 	sleep 3
 	http_proxy=http://$(LOCALHOST) wget -q -O- http://icanhazip.com
+	https_proxy=https://$(LOCALHOST) wget --no-check-certificate -O- https://icanhazip.com
 
 clean-compose:
 	-docker-compose rm -f

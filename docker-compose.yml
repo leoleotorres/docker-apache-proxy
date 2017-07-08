@@ -3,3 +3,4 @@ docker-apache-proxy:
   hostname: apache
   ports:
     - "80:80"
+    - "443:443"
